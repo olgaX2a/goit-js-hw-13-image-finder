@@ -1,0 +1,16 @@
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  list-style: none;
+}
+.photo-card {
+  width: 200px;
+}
+.photo-card img {
+  width: 100%;
+}
+.stats {
+  display: flex;
+  align-items: center;
+}
