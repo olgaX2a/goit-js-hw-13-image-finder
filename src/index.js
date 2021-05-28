@@ -1,7 +1,7 @@
 import './sass/main.scss';
 
-import * as basicLightbox from 'basiclightbox';
-import { alert, notice, info, success, error } from '@pnotify/core';
+// import * as basicLightbox from 'basiclightbox';
+import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
@@ -14,17 +14,25 @@ import markup from './js/markup';
 
 refs.loadBtn.addEventListener('click', () => {
     fetchImages();
-    scrollToBottom();
+    setTimeout(() => {
+        scrollToBottom();
+    }, 500)
+
 })
 refs.searchForm.addEventListener('submit', onSearchSubmit)
 
 function onSearchSubmit(event) {
     event.preventDefault();
     photoSearchService.query = event.target.query.value.trim();
-    loadBtn.hide();
-    markup.clear();
-    photoSearchService.resetPage();
-    fetchImages();
+    if (!photoSearchService.query) {
+        return
+    }
+    else {
+        loadBtn.hide();
+        markup.clear();
+        photoSearchService.resetPage();
+        fetchImages();
+    }
 }
 
 function fetchImages() {
@@ -49,3 +57,5 @@ const onBadRequest = function () {
                     delay: 2000
                 });
 }
+
+
